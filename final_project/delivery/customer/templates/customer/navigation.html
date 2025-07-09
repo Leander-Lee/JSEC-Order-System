@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar indigo">
+<nav class="navbar navbar-expand-lg navbar indigo fixed-top">
   <a class="navbar-brand" href="{% url 'index'%}">Deliver</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
     </ul>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Place an Order!</a>
+        <a class="nav-link" href="{% url 'order' %}">Place an Order!</a>
       </li>
     </ul>
   </div>

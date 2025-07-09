@@ -1,0 +1,69 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5 pt-4">
+  <h2 class="mb-4">Place Your Order</h2>
+  <form method="POST">
+    {% csrf_token %}
+
+    <!-- Main Items -->
+    <h4>Main Dishes</h4>
+    <ul class="list-group mb-4">
+      {% for item in main %}
+      <li class="list-group-item d-flex align-items-center">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" class="rounded mr-3" style="width: 60px; height: 60px; object-fit: cover;">
+        {% endif %}
+        <div class="flex-grow-1">
+          <strong>{{ item.name }}</strong><br>
+          <small>₱{{ item.price }}</small>
+        </div>
+        <input type="checkbox" name="items[]" value="{{ item.pk }}">
+      </li>
+      {% empty %}
+      <li class="list-group-item text-muted">No items available.</li>
+      {% endfor %}
+    </ul>
+
+    <!-- Side Items -->
+    <h4>Sides</h4>
+    <ul class="list-group mb-4">
+      {% for item in side %}
+      <li class="list-group-item d-flex align-items-center">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" class="rounded mr-3" style="width: 60px; height: 60px; object-fit: cover;">
+        {% endif %}
+        <div class="flex-grow-1">
+          <strong>{{ item.name }}</strong><br>
+          <small>₱{{ item.price }}</small>
+        </div>
+        <input type="checkbox" name="items[]" value="{{ item.pk }}">
+      </li>
+      {% empty %}
+      <li class="list-group-item text-muted">No items available.</li>
+      {% endfor %}
+    </ul>
+
+    <!-- Extras -->
+    <h4>Extras</h4>
+    <ul class="list-group mb-4">
+      {% for item in extra %}
+      <li class="list-group-item d-flex align-items-center">
+        {% if item.image %}
+        <img src="{{ item.image.url }}" class="rounded mr-3" style="width: 60px; height: 60px; object-fit: cover;">
+        {% endif %}
+        <div class="flex-grow-1">
+          <strong>{{ item.name }}</strong><br>
+          <small>₱{{ item.price }}</small>
+        </div>
+        <input type="checkbox" name="items[]" value="{{ item.pk }}">
+      </li>
+      {% empty %}
+      <li class="list-group-item text-muted">No items available.</li>
+      {% endfor %}
+    </ul>
+
+    <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+  </form>
+</div>
+{% endblock content %}
