@@ -28,6 +28,14 @@ class Order(View):
         return render(request, 'customer/order.html', context)
     
     def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        dorm = request.POST.get('dorm')
+        is_pickup = request.POST.get('is_pickup') == "true"
+
+        if is_pickup:
+            dorm = None 
+
         order_items = {
             'items': []
         }
@@ -52,7 +60,14 @@ class Order(View):
             price += menu_item.price
             item_id.append(menu_item.pk)
 
-        order = OrderModel.objects.create(price=price)
+        order = OrderModel.objects.create(
+            price=price,
+            name=name,
+            email=email,
+            dorm=dorm,
+            is_pickup=is_pickup,
+        )
+
         order.items.add(*item_id)
 
         context = {

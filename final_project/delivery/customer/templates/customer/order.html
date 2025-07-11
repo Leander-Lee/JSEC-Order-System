@@ -1,7 +1,7 @@
 {% extends 'customer/base.html' %}
 
 {% block content %}
-<div class="container mt-5 mb-5 pt-4">
+<div class="container mt-5 mb-12 pt-4">
   <h2 class="mb-4">Place Your Order</h2>
   <form method="POST">
     {% csrf_token %}
@@ -63,7 +63,69 @@
       {% endfor %}
     </ul>
 
-    <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+    <div class="form-group pt-3">
+     <label for="name">Full Name</label>
+      <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+    </div>
+
+    <div class="form-group pt-3">
+      <label for="name">Email Address</label>
+      <input required class="form-control" type="text" placeholder="example@company.com" name="email" />
+    </div>
+
+    <div class="pt-3">
+      <p>Is pickup?</p>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="is_pickup"
+          id="pickup_radio"
+          value="true"
+          checked
+        />
+        <label class="form-check-label" for="pickup_radio">Pickup</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="is_pickup"
+          id="delivery_radio"
+          value="false"
+        />
+        <label class="form-check-label" for="delivery_radio">Delivery</label>
+      </div>
+    </div>
+
+    <div id="delivery_details" class="form-group pt-3">
+      <label for="name">Dorm</label>
+      <input required class="form-control" type="text" placeholder="Your Dorm" name="dorm" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-3">Place Order</button>
   </form>
 </div>
+
+<script>
+  function updateDeliveryDetails() {
+    const deliveryRadio = document.getElementById("delivery_radio");
+    const deliveryDetails = document.getElementById("delivery_details");
+
+    if (deliveryRadio.checked) {
+      deliveryDetails.style.display = "block";
+    } else {
+      deliveryDetails.style.display = "none";
+    }
+  }
+
+  // Initial state
+  updateDeliveryDetails();
+
+  // Attach listeners to both radios
+  document.querySelectorAll('input[name="is_pickup"]').forEach((radio) => {
+    radio.addEventListener("change", updateDeliveryDetails);
+  });
+</script>
 {% endblock content %}
