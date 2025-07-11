@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from django.core.mail import send_mail
 from .models import MenuItem, Category, OrderModel
 
 class Index(View):
@@ -70,6 +71,22 @@ class Order(View):
 
         order.items.add(*item_id)
 
+        if is_pickup:
+            greeting = "Thank you for your order! Your food is being made and will be ready for pickup soon!"
+        else:
+            greeting = "Thank you for your order! Your food is being made and will be delivered soon!"
+        
+        body = (f'{greeting}\n'
+            f'Your total: {price}\n'
+            'Thank you again for your order!')
+
+        send_mail(
+            'Thank You For Your Order!',
+            body,
+            'example@example.com',
+            [email],
+            fail_silently=False
+        )
         context = {
             'items': order_items['items'], 
             'price': price
