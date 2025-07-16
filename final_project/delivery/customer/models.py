@@ -28,6 +28,7 @@ class OrderModel(models.Model):
     dorm = models.CharField(max_length=50, blank=True, null=True)
     is_pickup = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Order: {self.created_on.strftime("%b %d %I: %M %p")}'
