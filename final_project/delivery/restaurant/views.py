@@ -26,3 +26,4 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
         }
         return render(request, 'restaurant/dashboard.html', context)
 
+
