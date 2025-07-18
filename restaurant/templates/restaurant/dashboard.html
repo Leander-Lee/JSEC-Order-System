@@ -1,0 +1,63 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+<div style="font-family: 'Poppins', sans-serif;">
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center mt-4">
+            <div class="card col-md-5 mr-3">
+                <h4 class="text-center pt-2">Today's Total Revenue</h4>
+                <h1 class="text-center" style="color:rgb(23, 147, 19);">₱{{ total_revenue }}</h1>
+            </div>
+       
+            <div class="card col-md-5 mr-3">
+                <h4 class="text-center pt-2">Today's Total Orders</h4>
+                <h1 class="text-center" style="color:rgb(135, 37, 17);">{{ total_orders }}</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-12 mr-5">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                         <th scope="col">Order ID</th>
+                         <th scope="col">Price</th>
+                         <th scope="col">Name</th>
+                         <th scope="col">Email</th>
+                         <th scope="col">Dorm</th>
+                         <th scope="col">Pickup?</th>
+                         <th scope="col">Is paid?</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <th scope="row">{{ order.pk }}  </th>
+                            <td>{{ order.price }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.email }}</td>
+                            <td>{{ order.dorm }}</td>
+                            <td>
+                                {% if order.is_pickup %}
+                                    <i style="color: green" class="fa fa-check"></i>
+                                {% else %}
+                                    <i style="color: rgb(169, 7, 7)" class="fa fa-times"></i>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if order.is_paid %}
+                                    <i style="color: green" class="fa fa-check"></i>
+                                {% else %}
+                                    <i style="color: rgb(169, 7, 7)" class="fa fa-times"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

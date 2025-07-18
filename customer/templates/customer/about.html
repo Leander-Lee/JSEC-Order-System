@@ -1,0 +1,42 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<div class="container mb-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-sm-12 offset-md-1 p-2 text-center pt-5">
+      <h1 class="mb-2 animate-craving" 
+          style="font-family: 'Quicksand', sans-serif; font-size: 3.5rem; font-weight: 700; font-style: italic; letter-spacing: 1px; color: #0d325c;">
+        About Us! 
+      </h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-1">
+    <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center"
+         style="font-family: 'Poppins', sans-serif; font-size: 1.3rem;">
+      <p>
+        We're here to help Ateneans skip the lines, save time, and never miss a meal —
+        because you shouldn’t have to choose between eating and making it to class on time. 💙 <br><br>
+        <strong style="color: #8B0000;">– Annika Ng, Leander Lee, and Riyen Ang :)</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .animate-craving {
+    animation: floatIn 1.2s ease-out;
+  }
+
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+{% endblock content %}

@@ -1,0 +1,190 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+
+<style>
+  .place-order-btn {
+    border: none;
+    font-weight: 600;
+    padding: 10px 24px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
+  }
+
+  .place-order-btn:hover {
+    color: white;
+    transform: scale(1.08);
+    box-shadow: 0 0 16px rgba(13, 110, 253, 0.5);
+  }
+</style>
+
+
+<div class="container mt-5 mb-12 pt-4">
+  <h2 class="mb-5 pt-5 text-center animate-craving" 
+      style="font-family: 'Quicksand', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: 1px; font-style: italic;">
+    So... what are you craving? <span style="font-size: 2rem;">:P</span>
+  </h2>
+
+  <form method="POST" style="font-family: 'Poppins', sans-serif; font-size: 1.2rem;">
+    {% csrf_token %}
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+      <!-- Wokwei -->
+      <div class="col">
+        <h4>Wokwei</h4>
+        <ul class="list-group mb-4">
+          {% for item in main %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
+            {% endif %}
+            <div class="flex-grow-1">
+              <strong>{{ item.name }}</strong><br>
+              <small>₱{{ item.price }}</small>
+            </div>
+            <input type="checkbox" name="items[]" value="{{ item.pk }}">
+          </li>
+          {% empty %}
+          <li class="list-group-item text-muted">No items available.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Kebros -->
+      <div class="col">
+        <h4>Kebros</h4>
+        <ul class="list-group mb-4">
+          {% for item in side %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
+            {% endif %}
+            <div class="flex-grow-1">
+              <strong>{{ item.name }}</strong><br>
+              <small>₱{{ item.price }}</small>
+            </div>
+            <input type="checkbox" name="items[]" value="{{ item.pk }}">
+          </li>
+          {% empty %}
+          <li class="list-group-item text-muted">No items available.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- GHE! -->
+      <div class="col">
+        <h4>GHE!</h4>
+        <ul class="list-group mb-4">
+          {% for item in extra %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
+            {% endif %}
+            <div class="flex-grow-1">
+              <strong>{{ item.name }}</strong><br>
+              <small>₱{{ item.price }}</small>
+            </div>
+            <input type="checkbox" name="items[]" value="{{ item.pk }}">
+          </li>
+          {% empty %}
+          <li class="list-group-item text-muted">No items available.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Smoked -->
+      <div class="col">
+        <h4>Smoked</h4>
+        <ul class="list-group mb-4">
+          {% for item in resto1 %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
+            {% endif %}
+            <div class="flex-grow-1">
+              <strong>{{ item.name }}</strong><br>
+              <small>₱{{ item.price }}</small>
+            </div>
+            <input type="checkbox" name="items[]" value="{{ item.pk }}">
+          </li>
+          {% empty %}
+          <li class="list-group-item text-muted">No items available.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Cafe -->
+      <div class="col">
+        <h4>Cup of Joe</h4>
+        <ul class="list-group mb-4">
+          {% for item in resto2 %}
+          <li class="list-group-item d-flex align-items-center">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
+            {% endif %}
+            <div class="flex-grow-1">
+              <strong>{{ item.name }}</strong><br>
+              <small>₱{{ item.price }}</small>
+            </div>
+            <input type="checkbox" name="items[]" value="{{ item.pk }}">
+          </li>
+          {% empty %}
+          <li class="list-group-item text-muted">No items available.</li>
+          {% endfor %}
+        </ul>
+
+    <!-- Customer Info -->
+    <div class="form-group pt-3">
+      <label for="name">Full Name</label>
+      <input required class="form-control" type="text" placeholder="Your Name" name="name" style="font-size: 1.1rem;" />
+    </div>
+
+    <div class="form-group pt-3">
+      <label for="email">Email Address</label>
+      <input required class="form-control" type="text" placeholder="example@company.com" name="email" style="font-size: 1.1rem;" />
+    </div>
+
+    <div class="form-group pt-3">
+      <label class="d-block mb-2">Pickup or Delivery?</label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="pickup_radio" name="is_pickup" class="custom-control-input" value="true" checked>
+        <label class="custom-control-label" for="pickup_radio">Pickup</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="delivery_radio" name="is_pickup" class="custom-control-input" value="false">
+        <label class="custom-control-label" for="delivery_radio">Delivery</label>
+      </div>
+    </div>
+
+    <div id="delivery_details" class="form-group pt-3">
+      <label for="dorm">Dorm</label>
+      <input class="form-control" type="text" placeholder="Your Dorm" name="dorm" style="font-size: 1.1rem;" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-4 place-order-btn">
+      Place Order
+    </button>
+  </form>
+</div>
+
+<script>
+  function updateDeliveryDetails() {
+    const deliveryRadio = document.getElementById("delivery_radio");
+    const deliveryDetails = document.getElementById("delivery_details");
+
+    if (deliveryRadio.checked) {
+      deliveryDetails.style.display = "block";
+    } else {
+      deliveryDetails.style.display = "none";
+    }
+  }
+
+  updateDeliveryDetails();
+  document.querySelectorAll('input[name="is_pickup"]').forEach((radio) => {
+    radio.addEventListener("change", updateDeliveryDetails);
+  });
+</script>
+{% endblock content %}
