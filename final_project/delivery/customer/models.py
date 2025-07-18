@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-#first model, itemsthat are offered for sale
 
 class MenuItem(models.Model):
     name=models.CharField(max_length=100)

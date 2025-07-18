@@ -6,8 +6,8 @@
   .place-order-btn {
     border: none;
     font-weight: 600;
-    padding: 10px 24px;
-    font-size: 1.2rem;
+    padding: 12px 28px;
+    font-size: 1.4rem;
     border-radius: 8px;
     transition: all 0.3s ease;
     box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
@@ -18,8 +18,11 @@
     transform: scale(1.08);
     box-shadow: 0 0 16px rgba(13, 110, 253, 0.5);
   }
-</style>
 
+  .list-group-item {
+    font-size: 1.3rem;
+  }
+</style>
 
 <div class="container mt-5 mb-12 pt-4">
   <h2 class="mb-5 pt-5 text-center animate-craving" 
@@ -27,14 +30,13 @@
     So... what are you craving? <span style="font-size: 2rem;">:P</span>
   </h2>
 
-  <form method="POST" style="font-family: 'Poppins', sans-serif; font-size: 1.2rem;">
+  <form method="POST" style="font-family: 'Poppins', sans-serif; font-size: 1.4rem;">
     {% csrf_token %}
-
     <div class="row row-cols-1 row-cols-md-2 g-4">
 
       <!-- Wokwei -->
       <div class="col">
-        <h4>Wokwei</h4>
+        <h4 style="font-size: 1.8rem;">Wokwei</h4>
         <ul class="list-group mb-4">
           {% for item in main %}
           <li class="list-group-item d-flex align-items-center">
@@ -42,8 +44,8 @@
             <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
             {% endif %}
             <div class="flex-grow-1">
-              <strong>{{ item.name }}</strong><br>
-              <small>₱{{ item.price }}</small>
+              <strong style="font-size: 1.4rem;">{{ item.name }}</strong><br>
+              <span style="font-size: 1.3rem;">₱{{ item.price }}</span>
             </div>
             <input type="checkbox" name="items[]" value="{{ item.pk }}">
           </li>
@@ -55,7 +57,7 @@
 
       <!-- Kebros -->
       <div class="col">
-        <h4>Kebros</h4>
+        <h4 style="font-size: 1.8rem;">Kebros</h4>
         <ul class="list-group mb-4">
           {% for item in side %}
           <li class="list-group-item d-flex align-items-center">
@@ -63,8 +65,8 @@
             <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
             {% endif %}
             <div class="flex-grow-1">
-              <strong>{{ item.name }}</strong><br>
-              <small>₱{{ item.price }}</small>
+              <strong style="font-size: 1.4rem;">{{ item.name }}</strong><br>
+              <span style="font-size: 1.3rem;">₱{{ item.price }}</span>
             </div>
             <input type="checkbox" name="items[]" value="{{ item.pk }}">
           </li>
@@ -76,7 +78,7 @@
 
       <!-- GHE! -->
       <div class="col">
-        <h4>GHE!</h4>
+        <h4 style="font-size: 1.8rem;">GHE!</h4>
         <ul class="list-group mb-4">
           {% for item in extra %}
           <li class="list-group-item d-flex align-items-center">
@@ -84,8 +86,8 @@
             <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
             {% endif %}
             <div class="flex-grow-1">
-              <strong>{{ item.name }}</strong><br>
-              <small>₱{{ item.price }}</small>
+              <strong style="font-size: 1.4rem;">{{ item.name }}</strong><br>
+              <span style="font-size: 1.3rem;">₱{{ item.price }}</span>
             </div>
             <input type="checkbox" name="items[]" value="{{ item.pk }}">
           </li>
@@ -97,7 +99,7 @@
 
       <!-- Smoked -->
       <div class="col">
-        <h4>Smoked</h4>
+        <h4 style="font-size: 1.8rem;">Smoked</h4>
         <ul class="list-group mb-4">
           {% for item in resto1 %}
           <li class="list-group-item d-flex align-items-center">
@@ -105,8 +107,8 @@
             <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
             {% endif %}
             <div class="flex-grow-1">
-              <strong>{{ item.name }}</strong><br>
-              <small>₱{{ item.price }}</small>
+              <strong style="font-size: 1.4rem;">{{ item.name }}</strong><br>
+              <span style="font-size: 1.3rem;">₱{{ item.price }}</span>
             </div>
             <input type="checkbox" name="items[]" value="{{ item.pk }}">
           </li>
@@ -116,9 +118,9 @@
         </ul>
       </div>
 
-      <!-- Cafe -->
+      <!-- Cup of Joe -->
       <div class="col">
-        <h4>Cup of Joe</h4>
+        <h4 style="font-size: 1.8rem;">Cup of Joe</h4>
         <ul class="list-group mb-4">
           {% for item in resto2 %}
           <li class="list-group-item d-flex align-items-center">
@@ -126,8 +128,8 @@
             <img src="{{ item.image.url }}" class="rounded" style="width: 60px; height: 60px; object-fit: cover; margin-right: 20px;">
             {% endif %}
             <div class="flex-grow-1">
-              <strong>{{ item.name }}</strong><br>
-              <small>₱{{ item.price }}</small>
+              <strong style="font-size: 1.4rem;">{{ item.name }}</strong><br>
+              <span style="font-size: 1.3rem;">₱{{ item.price }}</span>
             </div>
             <input type="checkbox" name="items[]" value="{{ item.pk }}">
           </li>
@@ -135,38 +137,46 @@
           <li class="list-group-item text-muted">No items available.</li>
           {% endfor %}
         </ul>
+      </div>
+    </div>
 
     <!-- Customer Info -->
-    <div class="form-group pt-3">
-      <label for="name">Full Name</label>
-      <input required class="form-control" type="text" placeholder="Your Name" name="name" style="font-size: 1.1rem;" />
-    </div>
+    <div class="d-flex justify-content-center mt-5">
+      <div style="max-width: 600px; width: 100%;">
+        <div class="form-group pt-3">
+          <label for="name" style="font-size: 1.4rem;">Full Name</label>
+          <input required class="form-control" type="text" placeholder="Your Name" name="name" style="font-size: 1.3rem;" />
+        </div>
 
-    <div class="form-group pt-3">
-      <label for="email">Email Address</label>
-      <input required class="form-control" type="text" placeholder="example@company.com" name="email" style="font-size: 1.1rem;" />
-    </div>
+        <div class="form-group pt-3">
+          <label for="email" style="font-size: 1.4rem;">Email Address</label>
+          <input required class="form-control" type="text" placeholder="example@company.com" name="email" style="font-size: 1.3rem;" />
+        </div>
 
-    <div class="form-group pt-3">
-      <label class="d-block mb-2">Pickup or Delivery?</label>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="pickup_radio" name="is_pickup" class="custom-control-input" value="true" checked>
-        <label class="custom-control-label" for="pickup_radio">Pickup</label>
+        <div class="form-group pt-3">
+          <label class="d-block mb-2" style="font-size: 1.4rem;">Pickup or Delivery?</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="pickup_radio" name="is_pickup" class="custom-control-input" value="true" checked>
+            <label class="custom-control-label" for="pickup_radio" style="font-size: 1.3rem;">Pickup</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="delivery_radio" name="is_pickup" class="custom-control-input" value="false">
+            <label class="custom-control-label" for="delivery_radio" style="font-size: 1.3rem;">Delivery</label>
+          </div>
+        </div>
+
+        <div id="delivery_details" class="form-group pt-3">
+          <label for="dorm" style="font-size: 1.4rem;">Dorm</label>
+          <input class="form-control" type="text" placeholder="Your Dorm" name="dorm" style="font-size: 1.3rem;" />
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mt-4 place-order-btn">
+            Place Order
+          </button>
+        </div>
       </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="delivery_radio" name="is_pickup" class="custom-control-input" value="false">
-        <label class="custom-control-label" for="delivery_radio">Delivery</label>
-      </div>
     </div>
-
-    <div id="delivery_details" class="form-group pt-3">
-      <label for="dorm">Dorm</label>
-      <input class="form-control" type="text" placeholder="Your Dorm" name="dorm" style="font-size: 1.1rem;" />
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block mt-4 place-order-btn">
-      Place Order
-    </button>
   </form>
 </div>
 
@@ -187,4 +197,5 @@
     radio.addEventListener("change", updateDeliveryDetails);
   });
 </script>
+
 {% endblock content %}

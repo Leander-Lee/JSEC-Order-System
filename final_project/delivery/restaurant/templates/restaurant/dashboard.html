@@ -21,12 +21,14 @@
                     <thead>
                         <tr>
                          <th scope="col">Order ID</th>
+                         <th scope="col">Time Ordered</th>
                          <th scope="col">Price</th>
                          <th scope="col">Name</th>
                          <th scope="col">Email</th>
                          <th scope="col">Dorm</th>
                          <th scope="col">Pickup?</th>
                          <th scope="col">Is paid?</th>
+                         <th scope="col">Is completed?</th>
                         </tr>
                     </thead>
 
@@ -34,6 +36,7 @@
                         {% for order in orders %}
                         <tr>
                             <th scope="row">{{ order.pk }}  </th>
+                            <td>{{ order.created_on}}</td>
                             <td>{{ order.price }}</td>
                             <td>{{ order.name }}</td>
                             <td>{{ order.email }}</td>
@@ -47,6 +50,13 @@
                             </td>
                             <td>
                                 {% if order.is_paid %}
+                                    <i style="color: green" class="fa fa-check"></i>
+                                {% else %}
+                                    <i style="color: rgb(169, 7, 7)" class="fa fa-times"></i>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if order.is_completed %}
                                     <i style="color: green" class="fa fa-check"></i>
                                 {% else %}
                                     <i style="color: rgb(169, 7, 7)" class="fa fa-times"></i>

@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-5+xiww3$jx&089=*$w_urz4)ptjl)+zq)gtt%gl!o*=)ht0sq(
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+TIME_ZONE = 'Asia/Manila'
+USE_TZ = True
 # Application definition
 
 AUTHENTICATION_BACKENDS = [
@@ -123,11 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
