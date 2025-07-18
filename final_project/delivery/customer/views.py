@@ -15,9 +15,11 @@ class About(View):
 
 class Order(View):
     def get(self, request, *args, **kwargs):
-        main = MenuItem.objects.filter(category__name__contains='Main')
-        side = MenuItem.objects.filter(category__name__contains='Side')
-        extra = MenuItem.objects.filter(category__name__contains='Extra')
+        main = MenuItem.objects.filter(category__name__contains='Wokwei')
+        side = MenuItem.objects.filter(category__name__contains='Kebros')
+        extra = MenuItem.objects.filter(category__name__contains='GHE!')
+        resto1 = MenuItem.objects.filter(category__name__contains='Smoked')
+        resto2 = MenuItem.objects.filter(category__name__contains='Cafe')
         #get item from all the categories
 
         #pass into context
@@ -25,6 +27,8 @@ class Order(View):
             "main": main,
             'side': side,  
             'extra': extra,
+            'resto1': resto1,
+            'resto2': resto2, 
         } 
 
         #render the template
